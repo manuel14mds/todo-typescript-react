@@ -23,14 +23,10 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
-        
     },
-    "ignorePatterns": ["temp.js", "**/vendor/*.js",".eslintrc.cjs"],
     "plugins": [
         "react"
     ],
     "rules": {
-        "react/react-in-jsx-scope":"off",
-        //"react/jsx-no-target-blank": "off"
     }
 }
