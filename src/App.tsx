@@ -17,24 +17,24 @@ const mockTodos = [
         title: 'todo 3',
         completed: false
     }
-
 ]
+
 function App (): JSX.Element {
-    const [todos] = useState(mockTodos)
+    const [todos, setTodos] = useState(mockTodos)
     
+    const handleRemove = (id: string): void => {
+        const newTodos = todos.filter(todo => todo.id !== id)
+        setTodos(newTodos)
+    }
+
     return (
         <div className='todoapp'>
-            <Todos todos = {...todos} />
+            <Todos
+            props = {{ onRemoveTodo: handleRemove, todos: [...todos] }} 
+            
+            />
         </div>
     )
 }
-
-/*
-//es un componente funcional de react
-function App (): React.FC {
-    return (
-        <div>Todo MCV</div>
-    )
-} */
 
 export default App
