@@ -3,6 +3,7 @@ import { Todos } from './components/Todos'
 import { type FiltersType, type Todo } from './types.s'
 import { Footer } from './components/Footer'
 import { TODO_FILTERS } from './consts'
+import { Header } from './components/Header'
 
 const mockTodos = [
     {
@@ -60,8 +61,18 @@ function App (): JSX.Element {
         setTodos(newTodos)
     }
 
+    const onAddTodo = ({ title }: Pick<Todo, 'title'>): void => {
+        const newTodo = {
+            title,
+            id: crypto.randomUUID(),
+            completed: false
+        }
+        const newTodos = [...todos, newTodo]
+        setTodos(newTodos)
+    }
     return (
         <div className='todoapp'>
+            <Header props={{ onAddTodo }}/>
             <Todos
             props = {{ onRemoveTodo: handleRemove, onToggleCompleteTodo: handleCompleted, todos: filteredTodos }} 
             />
