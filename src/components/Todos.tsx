@@ -4,7 +4,9 @@ import { Todo } from './Todo'
 interface Props {
     todos: ListOfTodos
     onRemoveTodo: (id: string) => void
+    onToggleCompleteTodo: ({ id, completed }: Pick<TodoType, 'id' | 'completed'>) => void
 }
+
 export const Todos: React.FC<{ props: Props }> = ({ props }) => {
     return (
         <ul className='todo-list'>
@@ -15,7 +17,13 @@ export const Todos: React.FC<{ props: Props }> = ({ props }) => {
                     >
                         <Todo
                         key={todo.id}
-                        props={{ id: todo.id, title: todo.title, completed: todo.completed, onRemoveTodo: props.onRemoveTodo }}
+                        props={{ 
+                            id: todo.id,
+                            title: todo.title,
+                            completed: todo.completed,
+                            onRemoveTodo: props.onRemoveTodo,
+                            onToggleCompleteTodo: props.onToggleCompleteTodo 
+                        }}
                         />
                     </li>
                 ))}
